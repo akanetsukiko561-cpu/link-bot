@@ -5,7 +5,7 @@ import os
 import difflib
 import webserver
 
-token = os.getenv(DISCORD_TOKEN)
+token = os.getenv('DISCORD_TOKEN')
 
 intents = discord.Intents.default()
 intents.message_content = True
