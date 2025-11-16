@@ -1,15 +1,12 @@
 import discord
 from discord.ext import commands
 import logging
-from dotenv import load_dotenv
 import os
 import difflib
 import webserver
 
-load_dotenv()
-token = os.getenv('DISCORD_TOKEN')
+token = os.getenv(DISCORD_TOKEN)
 
-handler = logging.FileHandler(filename='discord.log',encoding='utf-8', mode='w')
 intents = discord.Intents.default()
 intents.message_content = True
 intents.guilds = True
@@ -45,7 +42,7 @@ def fuzzy_match(user_ops, thread_title):
 @bot.command()
 async def strats(ctx):
     print("Command Triggered")
-    guild = bot.get_guild(main_server_ID_ID)
+    guild = bot.get_guild(main_server_ID)
     forum = guild.get_channel(forum_channel_ID)
 
     if not isinstance(forum, discord.ForumChannel):
@@ -162,5 +159,6 @@ async def strats(ctx):
         response_msg += f"\n⚔️ {counter_info}"
 
     await ctx.send(response_msg)
+
 webserver.keep_alive()
 bot.run(token)
