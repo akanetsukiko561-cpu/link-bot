@@ -4,6 +4,7 @@ import logging
 from dotenv import load_dotenv
 import os
 import difflib
+import webserver
 
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
@@ -43,8 +44,9 @@ def fuzzy_match(user_ops, thread_title):
 
 @bot.command()
 async def strats(ctx):
-    guild = bot.get_guild(MAIN_SERVER_ID)
-    forum = guild.get_channel(FORUM_CHANNEL_ID)
+    print("Command Triggered")
+    guild = bot.get_guild(main_server_ID_ID)
+    forum = guild.get_channel(forum_channel_ID)
 
     if not isinstance(forum, discord.ForumChannel):
         return await ctx.send("Forum channel not found!")
@@ -160,5 +162,5 @@ async def strats(ctx):
         response_msg += f"\n⚔️ {counter_info}"
 
     await ctx.send(response_msg)
-
-bot.run(token, log_handler=handler, log_level=logging.DEBUG)
+webserver.keep_alive()
+bot.run(token)
